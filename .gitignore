@@ -1,0 +1,6 @@
+# Editor settings
+.vscode
+*:Zone.Identifier
+
+/bin
+/obj
