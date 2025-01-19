@@ -100,9 +100,9 @@ CPPFLAGS += -Wl,-L$(BASE_LINKER),-T$(BASE_LINKER)/$(SERIES_FOLDER)/$(DEVICE).ld
 CPPFLAGS += -I$(INC_FOLDER)
 CPPFLAGS += -I$(BASE_STARTUP)
 
-# Include driver header files
+# Include component header files
 
-
+CPPFLAGS += -I ./components/driver/gpio/include
 
 # Flags - Machine-dependant options
 CPPFLAGS += -mcpu=$(SERIES_CPU)
@@ -110,6 +110,14 @@ CPPFLAGS += -march=$(SERIES_ARCH)
 CPPFLAGS += -mlittle-endian
 CPPFLAGS += -mthumb
 CPPFLAGS += -masm-syntax-unified
+
+# Input files
+SRC ?=
+SRC += $(SRC_FOLDER)/*.c
+
+# Include component source files
+SRC += ./components/driver/gpio/*.c
+
 
 # Output files
 ELF_FILE_NAME ?= stm32_executable.elf
@@ -120,9 +128,7 @@ ELF_FILE_PATH = $(BIN_FOLDER)/$(ELF_FILE_NAME)
 BIN_FILE_PATH = $(BIN_FOLDER)/$(BIN_FILE_NAME)
 OBJ_FILE_PATH = $(OBJ_FOLDER)/$(OBJ_FILE_NAME)
 
-# Input files
-SRC ?=
-SRC += $(SRC_FOLDER)/*.c
+
 
 # Startup file
 DEVICE_STARTUP = $(BASE_STARTUP)/$(SERIES_FOLDER)/$(MAPPED_DEVICE).s
