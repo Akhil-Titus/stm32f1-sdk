@@ -2,5 +2,4 @@
 .vscode
 *:Zone.Identifier
 
-/bin
-/obj
+/build
