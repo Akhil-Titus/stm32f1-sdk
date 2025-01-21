@@ -1,4 +1,5 @@
 #include "i2c.h"
+#include "gpio.h"
 
 
 // i2c1 is connected to apb1 
@@ -13,14 +14,17 @@ void i2c_init(char i2c, unsigned short speed_mode)
 
         /*enable gpio o/p AF open-drain*/
         // PB6 mode 01, config mode 11
-        GPIOB->CRL |= GPIO_CRL_MODE6_0;
-        GPIOB->CRL &= ~GPIO_CRL_MODE6_1;
-        GPIOB->CRL |= GPIO_CRL_CNF6_0 | GPIO_CRL_CNF6_1; // Open drain alternate  config mode 11
+        // GPIOB->CRL |= GPIO_CRL_MODE6_0;
+        // GPIOB->CRL &= ~GPIO_CRL_MODE6_1;
+        // GPIOB->CRL |= GPIO_CRL_CNF6_0 | GPIO_CRL_CNF6_1; // Open drain alternate  config mode 11
 
-        // PB7 mode 01, config mode 11
-        GPIOB->CRL |= GPIO_CRL_MODE7_0;
-        GPIOB->CRL &= ~GPIO_CRL_MODE7_1;
-        GPIOB->CRL |= GPIO_CRL_CNF7_0 | GPIO_CRL_CNF7_1; // Open drain alternate config mode 11
+        // // PB7 mode 01, config mode 11
+        // GPIOB->CRL |= GPIO_CRL_MODE7_0;
+        // GPIOB->CRL &= ~GPIO_CRL_MODE7_1;
+        // GPIOB->CRL |= GPIO_CRL_CNF7_0 | GPIO_CRL_CNF7_1; // Open drain alternate config mode 11
+        
+        gpio_init(GPIOB,  6, GPIO_MODE_OUTPUT_10, GPIO_OP_AF_OD);
+        gpio_init(GPIOB,  7, GPIO_MODE_OUTPUT_10, GPIO_OP_AF_OD);
 
         I2C1->CR1 |= I2C_CR1_SWRST; /*enter reset mode*/
         I2C1->CR1 &= ~I2C_CR1_SWRST; /*come out of reset mode*/
@@ -81,7 +85,8 @@ void i2c_address(char i2c, char address, char RW)
     volatile int tmp;
     if (i2c == 1)
     {
-        I2C1->DR = (address | RW);
+        // I2C1->DR = (address | RW);
+        I2C1->DR = (address << 1) | RW;
 
         while (!(I2C1->SR1 & I2C_SR1_ADDR))
         {
