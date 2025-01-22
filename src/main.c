@@ -1,12 +1,32 @@
 #include "stm32f1xx.h"
 #include "test_gpio.h"
 #include "i2c.h"
+#include "mpu6050.h"
+#include <stdbool.h>
 
-char new_data[2] = {0x01,0x02};
+bool tester_fun(int a, int b)
+{
+	return a > b;
+}
+
+
 
 int main(void)
 {
-    i2c_init(I2C_NUM_1, I2C_SM);
-    i2c_write(1, 0x3C, new_data);
-    return 0;
+	bool connection_test = 0;
+
+	mpu6050_i2c_init(1);
+	connection_test = mpu6050_test_connection();
+	// connection_test = tester_fun(3, 2);
+
+	if (connection_test)
+	{
+		while (1)
+		{
+		};
+	}
+	else
+	{
+		return 0;
+	}
 }

@@ -85,8 +85,8 @@ void i2c_address(char i2c, char address, char RW)
     volatile int tmp;
     if (i2c == 1)
     {
-        // I2C1->DR = (address | RW);
-        I2C1->DR = (address << 1) | RW;
+        I2C1->DR = (address | RW);
+        // I2C1->DR = (address << 1) | RW;
 
         while (!(I2C1->SR1 & I2C_SR1_ADDR))
         {

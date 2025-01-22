@@ -103,6 +103,7 @@ CPPFLAGS += -I$(BASE_STARTUP)
 # Include component header files
 CPPFLAGS += -I ./components/driver/gpio/include
 CPPFLAGS += -I ./components/driver/i2c/include
+CPPFLAGS += -I ./components/mpu6050/include
 
 # Flags - Machine-dependant options
 CPPFLAGS += -mcpu=$(SERIES_CPU)
@@ -118,6 +119,7 @@ SRC += $(SRC_FOLDER)/*.c
 # Include component source files
 SRC += ./components/driver/gpio/*.c
 SRC += ./components/driver/i2c/*.c
+SRC += ./components/mpu6050/src/*.c
 
 
 # Output files
