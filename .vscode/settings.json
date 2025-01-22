@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stm32f1xx.h": "c",
+        "i2c.h": "c",
+        "oled_drive.h": "c"
+    },
+    "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
+    // "cortex-debug.gdbPath": "gdb-multiarch"
+    "cortex-debug.gdbPath": "gdb-multiarch"
+}

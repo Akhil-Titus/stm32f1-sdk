@@ -183,7 +183,7 @@ clean:
 	rm -f $(OBJ_FILE_PATH)
 
 # Make flash
-flash:
+flash: $(BIN_FILE_PATH)
 ifeq ($(FLASHING_TOOL), st-flash)
 	st-flash write $(BIN_FOLDER)/$(BIN_FILE_NAME) $(FLASH)
 else ifeq ($(FLASHING_TOOL), stm32flash)
