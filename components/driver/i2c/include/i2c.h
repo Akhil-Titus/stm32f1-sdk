@@ -25,7 +25,7 @@ void i2c_data_transfer(char i2c, char data);
 
 void i2c_write(char i2c, char address, char data[]);
 
-char i2c_read(char i2c, char ACK_NACK);
+uint8_t i2c_read(uint8_t i2c, uint8_t ACK_NACK);
 
 void i2c_stop(char i2c);
 

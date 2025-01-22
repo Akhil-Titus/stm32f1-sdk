@@ -176,9 +176,9 @@ void i2c_write(char i2c, char address, char data[])
     i2c_stop(i2c);
 }
 
-char i2c_read(char i2c, char ACK_NACK)
+uint8_t i2c_read(uint8_t i2c, uint8_t ACK_NACK)
 {
-    char temp;
+    uint8_t temp;
     if (i2c == 1)
     {
         I2C1->CR1 |= I2C_CR1_ACK;

@@ -4,12 +4,6 @@
 #include "mpu6050.h"
 #include <stdbool.h>
 
-bool tester_fun(int a, int b)
-{
-	return a > b;
-}
-
-
 
 int main(void)
 {
@@ -17,7 +11,6 @@ int main(void)
 
 	mpu6050_i2c_init(1);
 	connection_test = mpu6050_test_connection();
-	// connection_test = tester_fun(3, 2);
 
 	if (connection_test)
 	{
@@ -30,3 +23,7 @@ int main(void)
 		return 0;
 	}
 }
+
+
+
+// Issue is time... when slowed down.. it works

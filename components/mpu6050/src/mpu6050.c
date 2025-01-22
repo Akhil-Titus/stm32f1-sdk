@@ -86,13 +86,13 @@ static void mpu6050_read_bits(uint8_t regAddr, uint8_t bitStart, uint8_t length,
     uint8_t tmp;
     // Read a single byte from the register
     uint8_t ret = mpu6050_i2c_read(regAddr, &tmp, 1); // Length is 1 since we're reading 1 byte
-    if (ret != 0)
-    {
-        LogError("MPU6050", "Failed to read from register 0x%x: %d", regAddr, ret);
-        return;
-    }
+    // if (ret != 0)
+    // {
+    //     LogError("MPU6050", "Failed to read from register 0x%x: %d", regAddr, ret);
+    //     return;
+    // }
 
-    // Create a mask for the bits we want to extract
+    // // Create a mask for the bits we want to extract
     uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
 
     // Mask and shift to extract the desired bits
