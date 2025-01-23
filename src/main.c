@@ -14,9 +14,7 @@ int main(void)
 
 	if (connection_test)
 	{
-		while (1)
-		{
-		};
+		mpu6050_initialize();
 	}
 	else
 	{
